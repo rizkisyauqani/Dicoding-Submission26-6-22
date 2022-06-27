@@ -171,3 +171,21 @@ p {
   background-color: darkred;
   color: white;
 }
+
+h3.heading {
+  display: inline;
+  margin-left: 20px;
+}
+
+h3.data {
+  display: inline;
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 10px;
+}
+
+p.data {
+  display: inline;
+  font-size: 14px;
+  margin-left: 10px;
+}

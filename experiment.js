@@ -28,27 +28,47 @@ function submitFormData() {
   dataBuku.author = penulis;
   dataBuku.year = tahun;
   dataBuku.isComplete = kotakCentang;
+
   if (kotakCentang === false) {
     const nampungId = document.createElement("p");
     const nampungJudul = document.createElement("h3");
     const nampungPenulis = document.createElement("p");
     const nampungTahun = document.createElement("p");
+    const nampungHeadingId = document.createElement("h3");
+    const nampungHeadingJudul = document.createElement("h3");
+    const nampungHeadingPenulis = document.createElement("h3");
+    const nampungHeadingTahun = document.createElement("h3");
+    const nampungsemuaHeading = document.createElement("div");
+    const nampungSemuaDataBuku = document.createElement("div");
     nampungId.textContent = dataBuku.id;
     nampungJudul.textContent = dataBuku.title;
     nampungPenulis.textContent = dataBuku.author;
     nampungTahun.textContent = dataBuku.year;
-    belumSelesai.append(nampungId, nampungJudul, nampungPenulis, nampungTahun);
-    const tombolHijau = document.getElementById("bukuSelesaiBaca");
-    const tombolMerah = document.getElementById("hapusBukuBelumSelesaiBaca");
-    tombolHijau.addEventListener("click", function (target) {
-      const nampungkeSelesaiDiv = document.createElement("div");
-      nampungkeSelesaiDiv.append(pushKeSelesai);
-      target = findTodo(dataBuku.id);
-      if (target === null) return;
-
-      dataBuku.isComplete;
-      pushKeSelesai(nampungId, nampungJudul, nampungPenulis, nampungTahun);
-    });
+    nampungHeadingId.textContent = "Id Buku";
+    nampungHeadingJudul.textContent = "Judul Buku";
+    nampungHeadingPenulis.textContent = "Penulis Buku";
+    nampungHeadingTahun.textContent = "Tahun Terbit";
+    nampungId.classList.add("data");
+    nampungJudul.classList.add("data");
+    nampungPenulis.classList.add("data");
+    nampungTahun.classList.add("data");
+    nampungHeadingId.classList.add("heading");
+    nampungHeadingJudul.classList.add("heading");
+    nampungHeadingPenulis.classList.add("heading");
+    nampungHeadingTahun.classList.add("heading");
+    nampungsemuaHeading.append(
+      nampungHeadingId,
+      nampungHeadingJudul,
+      nampungHeadingPenulis,
+      nampungHeadingTahun,
+    );
+    nampungSemuaDataBuku.append(
+      nampungId,
+      nampungJudul,
+      nampungPenulis,
+      nampungTahun,
+    );
+    belumSelesai.append(nampungsemuaHeading, nampungSemuaDataBuku);
   } else {
     const nampungId = document.createElement("p");
     const nampungJudul = document.createElement("h3");
@@ -59,8 +79,6 @@ function submitFormData() {
     nampungPenulis.textContent = dataBuku.author;
     nampungTahun.textContent = dataBuku.year;
     selesai.append(nampungId, nampungJudul, nampungPenulis, nampungTahun);
-    const greenButton = document.getElementById("bukuBelumSelesaiBaca");
-    const redButton = document.getElementById("hapusBukuSelesaiBaca");
   }
 }
 formElement.addEventListener("submit", formHandling);
