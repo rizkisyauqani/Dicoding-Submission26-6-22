@@ -1,93 +1,51 @@
-const formElement = document.getElementById("inputBook");
-const inputJudulBuku = document.getElementById("inputBookTitle");
-const inputPenulisBuku = document.getElementById("inputBookAuthor");
-const inputTahunBuku = document.getElementById("inputBookYear");
-const centangSelesai = document.getElementById("inputBookIsComplete");
+const todos = [];
+const RENDER_EVENT = "render-todo";
 
-const submitButtonElement = document.getElementById("bookSubmit");
+document.addEventListener("DOMContentLoaded", function () {
+  const submitForm = document.getElementById("inputBook");
+  submitForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    addTodo();
+  });
+});
 
-const bookDatas = {
-  id: +new Date(),
-  title: "",
-  author: "",
-  year: "",
-  isComplete: false,
-};
+function addTodo() {
+  const textTodo = document.getElementById("inputBookTitle").value;
+  const timeStamp = document.getElementById("inputBookYear").value;
 
-// const judulBuku = "";
-// const penulisBuku = "";
-// const tahunTerbit = "";
+  const generatedID = generateId();
+  const todoObject = generateTodoObject(
+    generatedID,
+    textTodo,
+    timeStamp,
+    false,
+  );
+  todos.push(todoObject);
 
-submitButtonElement.addEventListener("click", bookDataSubmit);
-formElement.addEventListener("submit", bookDataForm);
-// centangSelesai.addEventListener("change", checkButton);
-
-function bookDataForm(event) {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-  for (key in bookDatas) {
-    const idBuku = "";
-    const judulBuku = formData.get("judulBuku");
-    const penulisBuku = formData.get("penulisBuku");
-    const tahunTerbit = formData.get("tahunTerbit");
-    idBuku.textContent = bookDatas[key];
-    judulBuku.textContent = bookDatas[key];
-    penulisBuku.textContent = bookDatas[key];
-    tahunTerbit.textContent = bookDatas[key];
-    return idBuku, judulBuku, penulisBuku, tahunTerbit;
-  }
-
-  // const keteranganBuku = checkButton();
-  // const judulBuku = (bookDatas.title = inputJudulBuku.value);
-  // const penulisBuku = (bookDatas.author = inputPenulisBuku.value);
-  // const tahunBuku = (bookDatas.year = inputTahunBuku.value);
-  // checkButton();
+  document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
-function checkButton() {
-  if (centangSelesai.checked) {
-    console.log("Selesai");
-  } else {
-    console.log("tidak selesai");
-  }
+function generateId() {
+  return +new Date();
 }
 
-function bookDataSubmit(idBuku, judulBuku, penulisBuku, tahunTerbit) {
-  const belumSelesaiBaca = document.getElementById("belumSelesaiBaca");
-  const selesaiBaca = document.getElementById("SelesaiBaca");
-
-  const containerIdBuku = document.createElement("p");
-  const containerJudulBuku = document.createElement("h3");
-  const containerPenulisBuku = document.createElement("p");
-  const containerTahunBuku = document.createElement("p");
-
-  containerIdBuku.textContent = idBuku;
-  containerJudulBuku.textContent = judulBuku;
-  containerPenulisBuku.textContent = penulisBuku;
-  containerTahunBuku.textContent = tahunTerbit;
-
-  if (centangSelesai.checked === false) {
-    belumSelesaiBaca.append(
-      containerIdBuku,
-      containerJudulBuku,
-      containerPenulisBuku,
-      containerTahunBuku,
-    );
-  } else {
-    selesaiBaca.append(
-      containerIdBuku,
-      containerJudulBuku,
-      containerPenulisBuku,
-      containerTahunBuku,
-    );
-    return;
-  }
+function generateTodoObject(id, task, timeStamp, isCompleted) {
+  return {
+    id,
+    task,
+    timeStamp,
+    isCompleted,
+  };
 }
 
-function saveBookData() {
-  bookDataSubmit();
+document.addEventListener(RENDER_EVENT, function () {
+  console.log(todos);
+});
+
+function makeTodo(todoObject) {
+  const textTitle = document.createElement("h2");
+  textTitle.innerText = todoObject.task;
+
+  const textTimestamp = document.createElement("p");
+  textTimestamp.innerText = todoObject.timeStamp;
 }
-
-const angka = [0, 1, 2, 3, 4, 5];
-
-console.log(angka.length);
