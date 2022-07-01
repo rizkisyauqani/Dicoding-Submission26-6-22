@@ -172,20 +172,23 @@ p {
   color: white;
 }
 
-h3.heading {
-  display: inline;
-  margin-left: 20px;
+* .item {
+  border-radius: 16px;
+  margin-top: 16px;
+  padding: 12px 24px 12px 24px;
+  background: white;
+  display: flex;
+  align-items: center;
+}
+*/ .item > .inner h2 {
+  margin-bottom: unset;
 }
 
-h3.data {
-  display: inline;
-  font-size: 14px;
-  font-weight: normal;
-  margin-left: 10px;
+.item > .inner p {
+  margin-top: 5px;
 }
 
-p.data {
-  display: inline;
-  font-size: 14px;
-  margin-left: 10px;
+.shadow {
+  box-shadow: 0 5px 10px rgba(154, 160, 185, 0.05),
+    0 15px 40px rgba(166, 173, 201, 0.2);
 }
