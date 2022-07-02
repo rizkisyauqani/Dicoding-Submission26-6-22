@@ -73,16 +73,19 @@
 
         <div id="incompleteBookshelfList" class="book_list">
           <article class="book_item" id="belumSelesaiBaca">
-            <!-- <h3>Book Title</h3>
-            <p>Penulis: John Doe</p>
-            <p>Tahun: 2002</p> -->
-
-            <!-- <div class="action">
-              <button class="green" id="bukuSelesaiBaca">Selesai dibaca</button>
-              <button class="red" id="hapusBukuBelumSelesaiBaca">
-                Hapus buku
-              </button> -->
-            </div>
+            <table border="1">
+              <div>
+                <thead>
+                  <tr>
+                    <th>Judul Buku</th>
+                    <th>Penulis Buku</th>
+                    <th>Tahun Terbit</th>
+                    <th>More Action Buttons</th>
+                  </tr>
+                </thead>
+                <tbody id="bukuBelumSelesaiDibaca"></tbody>
+              </div>
+            </table>
           </article>
         </div>
       </section>
@@ -92,35 +95,37 @@
 
         <div id="completeBookshelfList" class="book_list">
           <article class="book_item" id="SelesaiBaca">
-            <!--                <h3>Book Title</h3>-->
-            <!--                <p>Penulis: John Doe</p>-->
-            <!--                <p>Tahun: 2002</p>-->
-
-            <!-- <div class="action">
-              <button class="green" id="bukuBelumSelesaiBaca">
-                Belum selesai dibaca
-              </button> -->
-              <!-- <button class="red" id="hapusBukuSelesaiBaca">Hapus buku</button> -->
-            </div>
+            <table>
+              <div>
+                <thead>
+                  <tr>
+                    <th>Judul Buku</th>
+                    <th>Penulis Buku</th>
+                    <th>Tahun Terbit</th>
+                    <th>More Action Buttons</th>
+                  </tr>
+                </thead>
+                <tbody id="bukuSelesaiDibaca"></tbody>
+              </div>
+            </table>
           </article>
         </div>
       </section>
 
-    <table border="1">  
-    <thead>
-      <th>Id</th>
-      <th>Judul Buku</th>
-      <th>Penulis Buku</th>
-    </thead>
-    <tbody>
-      <tr>
-        <td>23</td>
-        <td>Inilah Aku</td>
-        <td>Anto</td>
-      </tr>
-    </tbody>
-  </table>
-    
+      <table border="1">
+        <thead>
+          <th>Id</th>
+          <th>Judul Buku</th>
+          <th>Penulis Buku</th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>23</td>
+            <td>Inilah Aku</td>
+            <td>Anto</td>
+          </tr>
+        </tbody>
+      </table>
     </main>
 
     <script src="main.js"></script>
