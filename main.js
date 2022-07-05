@@ -1,4 +1,4 @@
-const books = [];
+let books = [];
 let data = "";
 
 // select HTML elements
@@ -72,7 +72,7 @@ function addBookDatas() {
       tombolBelumSelesai.innerText = "Buku Belum Selesai Dibaca";
       tombolBelumSelesai.id = data.id;
       tdForTombolBelumSelesai.append(tombolBelumSelesai);
-      tombolBelumSelesai.addEventListener("click", bukuBelumSelesaiDibaca);
+      tombolBelumSelesai.addEventListener("click", belumSelesai);
       const tombolHapus = document.createElement("button");
       tombolHapus.innerText = "Hapus Buku";
       tombolHapus.id = data.id;
@@ -90,15 +90,45 @@ function addBookDatas() {
   }
 }
 
-function bukuBelumSelesaiDibaca(event) {
-  const idBukuSelesaiDibaca = event.target.id;
+// function findTodo(todoId) {
+//   for (data of books) {
+//     if (data.id === todoId) {
+//       return data;
+//     }
+//   }
+//   return null;
+// }
 
-  if (idBukuSelesaiDibaca) {
-    data.isCompleted = false;
-  }
+// function findTodoIndex(todoId) {
+//   for (index in books) {
+//     if (books[index].id === todoId) {
+//       return index;
+//     }
+//   }
+//   return -1;
+// }
 
-  document.dispatchEvent(new Event("berhasil diubah ke belum baca"));
+function belumSelesai(pindah) {
+  const data = Number(pindah.target.id);
+  const data2 = books.findIndex(function (books) {
+    return books.id === data;
+  });
+  -1 !== data2 &&
+    ((books[data2] = {
+      ...books[data2],
+      isComplete: !1,
+    }),
+    document.dispatchEvent(new Event("berhasilDiUbah")));
 }
+
+// function bukuBelumSelesaiDibaca(todoId) {
+//   const todoTarget = findTodo(todoId);
+
+//   if (todoTarget == null) return;
+
+//   todoTarget.isCompleted === false;
+//   // document.dispatchEvent(new Event("berhasil diubah ke belum baca"));
+// }
 
 const submitButton = document.getElementById("bookSubmit");
 submitButton.addEventListener("click", addBookDatas);
