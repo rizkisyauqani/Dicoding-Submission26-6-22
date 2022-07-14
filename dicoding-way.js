@@ -69,7 +69,7 @@ document.addEventListener(RENDER_EVENT, function () {
 });
 
 function findBookDatas(todoId) {
-  for (book of books) {
+  for (const book of books) {
     if (book.id === todoId) {
       return book;
     }
@@ -198,11 +198,11 @@ function saveData() {
 }
 
 function isStorageExist() {
-  if (typeof (Storage === undefined)) {
+  if (typeof Storage !== undefined) {
+    console.log("Browser kamu mendukung local storage");
+  } else {
     console.log("Browser kamu tidak mendukung local storage");
-    return false;
   }
-  return true;
 }
 
 document.addEventListener(SAVED_EVENT, function () {
@@ -222,6 +222,29 @@ function loadDataFromStorage() {
   document.dispatchEvent(new Event(RENDER_EVENT));
 }
 
-window.addEventListener("load", function () {
-  isStorageExist();
-});
+const searchButtonElement = document.getElementById("searchSubmit");
+const searchBookElement = document.getElementById("searchBookTitle");
+const searchFormElement = document.getElementById("searchBook");
+const completedBooksTable = document.getElementById("bukuSelesaiDibaca");
+
+searchButtonElement.addEventListener("click", searchBook);
+// searchBookElement.addEventListener("input", );
+searchFormElement.addEventListener("submit", searchForm);
+
+function searchBook() {
+  const searchBookValue = searchBookElement.value.toLowerCase();
+  const bookDataFiltered = books.slice(0);
+
+  for (let i = 0; i < books.length; i++) {
+    if (bookDataFiltered[i].toLowerCase().includes(searchBookValue)) {
+      completedBooksTable += +bookDataFiltered[i];
+    }
+  }
+}
+
+function searchForm(event) {
+  event.preventDefault();
+  searchBookElement.value = "";
+}
+
+window.addEventListener("load", function () {});
